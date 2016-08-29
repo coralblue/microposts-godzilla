@@ -3,8 +3,29 @@
 
 /* universal */
 
+// .nav{
+//       color: #fffafa;  
+// }
+// #logo:background {
+//   color: #fffafa;
+  
+// .navbar-default .navbar-backgrnd {
+//     color: #fffafa;
+// }
+// .navbar-default {
+//     backgrnd color: #fffafa;
+// }
+// .navbar-defaul {
+    // color: #fffafa;
+// }
+
 body {
   padding-top: 60px;
+  // background-color: #f0f8ff; aliceblue
+  // background-color: #e6e6fa; lavender
+  // background-color: #fffafa;snow
+  //background-color: #f8f8ff;ghostwhite
+  background-color: #e0ffff;
 }
 
 section {
@@ -50,8 +71,14 @@ p {
   line-height: 1.7em;
 }
 
+
 /* header */
 
+  .navbar {
+       background-color: #87ceeb;
+       border-color: #fffafa;
+      }
+      
 #logo {
   float: left;
   margin-right: 10px;
@@ -64,7 +91,7 @@ p {
 }
 
 #logo:hover {
-  color: #fff;
+  color: #FF7F50;
   text-decoration: none;
 }
 
@@ -137,6 +164,8 @@ aside {
 .gravatar {
   float: left;
   margin-right: 10px;
+  // color: #e0ffff;
+  // visibility: hidden;   // 全て消えてしまう (feedだけ指定するとコレは上書きされる模様)
 }
 
 /* microposts */
@@ -147,7 +176,10 @@ aside {
   li {
     padding: 10px 0;
     border-top: 1px solid #e8e8e8;
+    // width: 400px;
+    // height: 120px;
   }
+  
   .user {
     margin-top: 5em;
     padding-top: 0;
@@ -163,12 +195,15 @@ aside {
   .timestamp {
     color: $gray-light;
     display: block;
-    margin-left: 60px;
+    margin-left: 50px;
   }
   .gravatar {
     float: left;
     margin-right: 10px;
     margin-top: 5px;
+    color: #fffafa;
+    visibility: visible;  //_feedだけ影響
+    //visibility: hidden;  //_feedだけ影響
   }
 }
 
@@ -178,3 +213,41 @@ aside {
     margin-bottom: 5px;
   }
 }
+
+// /* index/users.micropost */
+// // .index {
+// // .users.micropost {
+//   .all_users{
+//   list-style: none;
+//   padding: 0;
+//   li {
+//     padding: 10px 0;
+//     border-top: 1px solid #e8e8e8;
+//     // width: 400px; 
+//     // height: 120px;
+//   }
+
+//   .user {
+//     margin-top: 5em;
+//     padding-top: 0;
+//   }
+//   .content {
+//     display: block;
+//     margin-left: 60px;
+//     img {
+//       display: block;
+//       padding: 5px 0;
+//     }
+//   }
+//   .timestamp {
+//     color: $gray-medium-light;
+//     display: block;
+//     margin-left: 60px;
+//   }
+//   .gravatar {
+//     float: left;
+//     margin-right: 10px;
+//     margin-top: 5px;
+//     visibility: hidden; //何の影響もない模様.恐らく.users.micropostも.indexも.all_usersもNGだったから,別のセレクタ指定が必要な気配
+//   }
+// }

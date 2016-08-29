@@ -1,0 +1,26 @@
+<!--_likes.html.erb-->
+<div class="panel-body">
+<!--本文など内容を囲むdivに.panel-bodyを指定-->
+    <% @micropost.each do |microposts| %>
+<!--micropostsごとに新しいインスタンスを実行してmicropostインスタンス変数を取得-->
+    <span class="label label-success"><%= microposts.id %></span>
+<!--label-successで装飾したmicroposts.idを表示-->
+
+<%= render @likes%>  
+<!--@likesからデータを一つ取り出して、micropostというローカル変数として,パーシャル_micropost.html.erbに渡す-->
+
+    <%= link_to "like", likes_path(micropost_id: micropost.id), method: :post %>
+<!--microposts.idを埋め込んだlikesのURLにpostメソッドでアクセスするリンクの貼られたアンカーテキスト"like"を表示-->
+      <br>
+    <% end %>
+  </div>
+</div>
+
+
+<%= form_for(current_user.likes.build, remote: true) do |f| %>
+  <div><%= hidden_field_tag :microposts_id, @microposts.id %></div>
+  <!--<#%= f.submit "LIKES", class: "btn btn-success" %>-->
+  <!--<%#= link_to "like", likes_path(id: micropost.id), method: :post %>-->
+  <%= link_to "like", likes_path(micropost_id: micropost.id), method: :post %>
+<!--"likeにリンクにidカラムにmicropost.idの入ったlikeされたmicropotsを"like"画面にpostする-->
+<% end %>

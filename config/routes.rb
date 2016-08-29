@@ -1,13 +1,39 @@
 Rails.application.routes.draw do
+  #get 'likes/create'
+
   root to: 'static_pages#home'
   get    'signup', to: 'users#new'
   get    'login' , to: 'sessions#new'
   post   'login' , to: 'sessions#create'
   delete 'logout', to: 'sessions#destroy'
-  resources :users
+  
+  get    'help', to: 'static_pages#help'
+
+  # get    'help', to: 'static_pages#help'
+  # root to: 'static_pages#contact'
+  # get    'Help', to: 'static_pages#contact'
+  # root :to => 'static_pages#contact'
+  
+  
+  # resources :users
   resources :microposts
   resources :relationships, only: [:create, :destroy]
+  resources :likes, only: [:create, :destroy]
+  # resources :like
+  
+  resources :users do
+    member do
+      get 'followings'
+      get 'followers'
+      get 'likes'
+    end
+  end
 end
+
+#resources :user_favorite_microposts , only: [:create, :destroy]
+
+
+
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

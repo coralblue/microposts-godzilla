@@ -1,18 +1,25 @@
+<!--new.html.erb-->
 <h1>Log in</h1>
-
+<!--タイトル表記-->
 <div class="row">
+<!--rowクラス:ネガティブマージンでパディングを打ち消す-->
   <div class="col-md-6 col-md-offset-3">
+<!--containerでcol6個を左に3個の空colを空けた後に配置-->
     <%= form_for(:session, url: login_path) do |f| %>
-
+<!--ログイン時のフォームを作る.表示するURLはlogin_pathで,1ユーザ毎に新しいインスタンスを生成する-->
       <%= f.label :email %>
+<!--emailのフォーム-->
       <%= f.email_field :email, class: 'form-control' %>
-
+<!--form-controlクラスでemailの指定. form-controlはwidth100%、枠線の角丸、内側の影、余白などを指定-->
       <%= f.label :password %>
+<!--パスワードのフォーム-->
       <%= f.password_field :password, class: 'form-control' %>
-
+<!--form-controlクラスでパスワードの指定-->
       <%= f.submit "Log in", class: "btn btn-primary" %>
+<!--Loginボタン (bootstrapのbtn btn-primaryテンプレ使います)-->
     <% end %>
 
     <p>New user? <%= link_to "Sign up now!", signup_path %></p>
+    <!--新規のユーザ向けサインアップ勧誘バナー. sinupURLへリダイレクト(signup GET /signup(.:format) users#new-->
   </div>
 </div>

@@ -1,43 +1,49 @@
-<!--<div class="row">-->
-<!--  <aside class="col-md-4">-->
-<!--    <section class="user_info">-->
-<!--      <h1>-->
-<!--        <%#= gravatar_for @user %><br>-->
-<!--        <%#= @user.name %><br>-->
-<!--      </h1>-->
-<!--    </section>-->
-<!--  </aside>-->
-<!--  <div class="col-md-8">-->
-<!--    <%# if @user.microposts.any? %>-->
-<!--      <h3>Microposts (<#%= @user.microposts.count %>)</h3>-->
-<!--      <ol class="microposts">-->
-        <!--<#%= render @microposts %>-->
-        <!--<#%= render partial: 'microposts/micropost', collection: @microposts %>-->
-<!--        <#% @microposts.each do |micropost| %>-->
-<!--        <#%= render partial: 'microposts/micropost', locals: { micropost: micropost } %>-->
-<!--        <#% end %>-->
-<!--      </ol>-->
-<!--    <#% end %>-->
-<!--  </div>-->
-<!--</div>-->
-
+<!--show.html.erb-->
 <div class="row">
+<!--rowクラス:ネガティブマージンでパディングを打ち消す-->
   <aside class="col-md-4">
+<!--本文から外れたセクションクラスの指定:col4マス使う-->
     <section class="user_info">
+<!--user_infoクラスを表示するセクションに関する指定-->
       <h1>
+<!--h1の大きさのパーツが始まり-->
         <%= gravatar_for @user %>
+<!--インスタンス変数userに紐付いたgravatorの表示.Grabaterは紐付けられたemailからavator取得-->
         <%= @user.name %>
-      </h1>
+<!--インスタンス変数userに紐付いた名前の表示.-->
+     </h1>
+<!--h1の大きさのパーツはココマデ-->
+<%= link_to 'Followings一覧', followings_user_path(@user) %></br>
+<!--Followingsと表記されたクリックボタン表示.ログインしている場合は, following_userへリダイレクト画面遷移-->
+<%= link_to 'Followers一覧', followers_user_path(@user) %>
+<!--Followersと表記されたクリックボタン表示.ログインしている場合は, followeres_userへリダイレクト画面遷移-->
+</br></br></br>
+<!--<span><%#= @current_user.profile %></span>-->
+<span><%= @user.profile %></span>
+<!--プロフィールを表示-->
     </section>
+<!--セクション指定ココマデ-->
   </aside>
+<!--本文から外れたセクションクラスに関す指定ココマデ-->
+
   <div class="col-md-8">
+<!--col-md-8指定されたクラスを指定.col8個使います-->
     <%= render 'follow_form' if logged_in? %>
+<!--logged_in? メソッドでloginしているか確認→loginしていたらてfollow_formをrenderする-->
     <% if @user.microposts.any? %>
+<!--@userはインスタンス変数です。コントローラー側で定義-->
+<!--@user.micropostsは、@userの全投稿-->
+<!--@user.microposts.any?は、@userの投稿が１つでも存在するかどうかを返す。投稿が１つでもあれば、true、なければ、false-->
       <h3>Microposts (<%= @user.microposts.count %>)</h3>
+<!--タイトルMicropostsの隣にインスタンス変数userに含まれるmicropostsの数を表示-->
       <ol class="microposts">
+<!--クラス"microposts"に関する指定ココから-->
         <%= render @microposts %>
+<!--@micropostsからデータを一つ一つ取り出して、micropostというローカル変数として、パーシャルapp/views/microposts/_micropost.html.erbに渡している-->
       </ol>
     <% end %>
   </div>
 </div>
 
+
+<!--どう取り扱うべきかまだ格闘中のコード: <%#= link_to "like", likes_path(id: micropost.id), method: :post %>-->

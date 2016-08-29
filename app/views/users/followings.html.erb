@@ -1,0 +1,12 @@
+<%= link_to 'Followings一覧', followings_user_path(@user) %>
+
+<% @followings.each do |user| %><br>
+  <%#= gravatar_for(user, size: 50) %><br>
+  <%= link_to gravatar_for(user, size: 50), user_path(user) %>
+  <%#= user.name %><br>
+  <%= link_to user.name ,  user_path(user) %><br>
+
+<% end %>
+
+<br>
+<%= link_to 'Followers一覧へ', followers_user_path(@user) %>

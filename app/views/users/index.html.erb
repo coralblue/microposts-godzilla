@@ -1,0 +1,44 @@
+<%#= render 'users/user' %>
+<%#= stylesheet_link_tag "index.css" %> 
+<!--all_users.html-->
+<!--<%# if @all_users.any? %>-->
+<!--  <ol class="users">-->
+<!--<%#= render @all_users %>-->
+<!--  </ol>-->
+<!--<%# end %>-->
+
+
+<%# if @all_users.any? %>
+  <!--<ol class="users">-->
+<%#= render @all_users %>
+
+  <!--</ol>-->
+<%# end %>
+
+<% if logged_in? %>
+
+<!— ログインしている場合 —>
+<% @all_users.each do |user| %>
+  <%#= user.name %>
+  <%#= link_to user.name %>
+  <%= link_to user.name ,  user_path(user) %><br>
+  <%#= link_to user.name, `/users/:id` %>
+  <%= link_to gravatar_for(user, size: 50), user_path(user) %><br>
+  <%= link_to "My Likes" , likes_user_path(user)  %><br>
+  <!--<%#= render user.microposts.order(created_at: :desc).limit(1) %><br> ←ページが寂しいから追加しようかと考えたが,綺麗に横並びに出来ないので断念-->
+  <%#= gravatar_for(user, size: 40) %>
+  <%#= micropost.content %>
+  <%#= render user.microposts %>
+  <%#= render user.microposts.order(created_at: :desc).limit(3) %>
+<br><% end %>
+
+<% else %>
+ <!— ログインしていない場合 —>
+  <% @all_users.each do |user| %><br>
+  <%= link_to user.name ,  user_path(user) %><br>
+  <%= link_to gravatar_for(user, size: 40), user_path(user) %><br>
+  <%#= link_to "Likeした投稿一覧" , likes_user_path(user)  %>
+<% end %>
+
+<% end %>
+<%# end %>

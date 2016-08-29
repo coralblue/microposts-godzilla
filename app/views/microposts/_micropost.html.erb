@@ -1,12 +1,63 @@
+<!--_micropost.html.erb-->
 <li id="micropost-<%= micropost.id %>">
-  <%= link_to gravatar_for(micropost.user, size: 50), micropost.user %>
+<!--micropostのリスト.micropost.idを表示-->
+<%= link_to gravatar_for(micropost.user, size: 50), micropost.user %>
+<!--投稿に関連付けられたユーザーのgravatarを50pxで表示-->
   <span class="user"><%= link_to micropost.user.name, micropost.user %></span>
+<!--投稿に関連付けられたuserの名前を表示-->
   <span class="content"><%= micropost.content %></span>
+<!--投稿に関連付けられたコンテンツの表示-->
   <span class="timestamp">
+<!--タイムスタンプを表示-->
     Posted <%= time_ago_in_words(micropost.created_at) %> ago.
+<!--RailsのDateHelperにtime_ago_in_wordsでタイムスタンプ＋投稿されてからの経過時間を表示-->
     <% if current_user == micropost.user %>
+<!--ログイン中のuserが投稿に関連付けられuserならtrueを返す-->
+
     <%= link_to "delete", micropost, method: :delete,
+# "delete"のアンカーテキストをクリックすると,当該micropostにメソッドdeleteを実行 (データ削除)
+                       
+                       
                                        data: { confirm: "You sure?" } %>
-    <% end %>
+  <% end %>
+  
+ <!--   def create -->
+ <!--   @micropost = Micropost.find(params[:micropost_id])-->
+ <!--   current_user.create_like(@micropost)-->
+    <!--@feed_likes = current_user.like_microposts.includes(:user).order(created_at: :desc)-->
+ <!--   redirect_to likes_user_path(current_user)-->
+ <!-- end-->
+
+ <!--def destroy-->
+ <!--   @micropost = Micropost.find(params[:micropost_id])-->
+ <!--   current_user.remove_like(@micropost)-->
+ <!--   redirect_to :back -->
+ <!--end-->
+<!--確認ダイアログを表示-->
+
+    <!--<#%= link_to 'like', likes_microposts.id_path(@micropost.id) %>-->
+    <!--<%#= link_to 'like', likes_path, id: micropost.id %>-->
+    <!--<#%= link_to 'like', likes_path, id: micropost.id, method: :post %>-->
+    <!--<#%= link_to "like", likes_path(micropost_id: micropost.id), method: :post %>-->
+
+   <% if logged_in? %> 
+   <% if current_user.like?(micropost) %>
+   <%# if other_user.like?(micropost) %>
+   <%#= link_to "unlike", like_path(micropost) , method: :delete , data: { confirm: "You sure?" } %>
+   <%#= link_to "unlike", likes_path(micropost) , method: :delete , data: { confirm: "You sure?" } %>
+   <%#= link_to "unlike", likes_path(micropost) , method: :destroy , data: { confirm: "You sure?" } %>
+   <!--<#%= link_to "unlike", like_path(micropost) , method: :destroy , data: { confirm: "You sure?" } %> ←routingエラー:POST-->
+   <!--<#%= link_to "unlike", like_path(current_user.likes.find_by(micropost_id: micropost.id), micropost_id: micropost.id) , method: :delete , data: { confirm: "You sure?" } %>-->
+<!--<%#= link_to "unlike", like_path(current_user.likes.find_by(micropost_id: micropost.id), method: :delete , data: { confirm: "You sure?" } %>-->
+
+<%= link_to "unlike", like_path(current_user.likes.find_by(micropost_id: micropost.id), micropost_id: micropost.id) , method: :delete , data: { confirm: "You sure?" } %>
+<!--<%#= link_to "unlike", like_path(current_user.likes.find_by(micropost_id: micropost.id), method: :delete , data: { confirm: "You sure?" } %>-->
+
+   <% else %>
+   <%= link_to "like", likes_path(micropost_id: micropost.id), method: :post %>
+   <% end %>
+
+ <% end %>
+<!--"like"アンカーテキストをクリックすると, micropostsのidを組み込んだlikes_pathへpostメソッドでリンクする-->
   </span>
 </li>

@@ -1,4 +1,12 @@
+<!--_user_info.html.erb-->
 <%= link_to gravatar_for(current_user, size: 50), current_user %>
+<!--ログインしているユーザのgravatorを大きさ50pxで表示-->
 <h1><%= current_user.name %></h1>
+<!--ログインしているユーザの名前をh1の文字の大きさで表示-->
 <span><%= link_to "view my profile", current_user %></span>
+<!--ログインしているユーザの"view my profile"を表示-->
 <span><%= pluralize(current_user.microposts.count, "micropost") %></span>
+<!--ログインしているユーザが投稿したmicropostの数をカウントし,pluralize(単数形の名詞を複数形に変換-->
+</br>
+<span><%= current_user.profile %></span>
+<!--プロフィールを表示-->

@@ -1,9 +1,16 @@
+<!--_follow_form.jtml.erb-->
 <% if current_user != @user %>
+<!--もし現在loginしているuserがインスタンス変数に一致しない場合-->
   <div id="follow_form">
+<!--follow_formへ画面遷移-->
   <% if current_user.following?(@user) %>
-    <%= render 'unfollow' %>
+<!--userインスタンス変数を確認して,もしログインしているuserがfollowしてるuserならtrueが返す-->
+  <%= render 'unfollow' %>
+<!--unfollow.htmlへ画面遷移-->
   <% else %>
+<!--それ以外の場合-->
     <%= render 'follow' %>
+<!--followh.htmlへ画面遷移-->
   <% end %>
   </div>
 <% end %>
